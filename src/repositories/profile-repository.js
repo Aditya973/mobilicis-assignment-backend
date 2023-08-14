@@ -8,10 +8,11 @@ class ProfileRepository extends CrudRepository{
         try {
             const profile = await Profile.findOne({
                 userId:id
-            });
+            }).populate('experience').populate('education').populate('certificates');
             return profile;
             
         } catch (error) {
+            console.log(error);
             console.log('something went wrong on repository layer');
             throw error;
         }
